@@ -1,4 +1,5 @@
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,25 +12,31 @@
 	<nav class="navbar bg-light navbar-light"></nav>
 
 	<form:form class="form-horizontal" method="post" action="/despesa/salvar" modelAttribute="despesa">
+		
+		<c:if test="${!empty mensagem}">
+			<div class="alert alert-success">
+				<span>${mensagem}</span>
+			</div>
+		</c:if>
+		
 		<div class="card">
 			<div class="card-header">
 				<div class="clearfix">
-	   				<h4 class="card-title impacta-titulo-panel">Nova Despesa
-	   				</h4>
-	   			</div>
+					<h4 class="card-title impacta-titulo-panel">Nova Despesa</h4>
+				</div>
 			</div>
 			<div class="card-body">
 				<div class="form-group">
 					<label for="descricao" class="col-sm-2 control-label">Descrição</label>
 					<div class="col-sm-4">
-						<form:input class="form-control" path="descricao"/>
+						<form:input class="form-control" path="descricao" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="categoria" class="col-sm-2 control-label">Categoria</label>
 					<div class="col-sm-2">
 						<form:select class="form-control" path="categoria">
-							<form:options/>
+							<form:options />
 						</form:select>
 					</div>
 				</div>

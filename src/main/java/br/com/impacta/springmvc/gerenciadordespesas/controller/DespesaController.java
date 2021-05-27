@@ -1,27 +1,39 @@
 package br.com.impacta.springmvc.gerenciadordespesas.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.com.impacta.springmvc.gerenciadordespesas.model.Despesa;
+import br.com.impacta.springmvc.gerenciadordespesas.repositorio.DespesaRepository;
 
 @Controller
 @RequestMapping("/despesa")
 public class DespesaController {
 	
+	@Autowired
+	private DespesaRepository despesaRepository;
+	
 	@RequestMapping("/form")
-	public String form(Model model) {
-		model.addAttribute("despesa", new Despesa());
-		return "cadastro-despesa";
+	public ModelAndView form() {
+		ModelAndView mv = new ModelAndView("cadastro-despesa");
+		mv.addObject("despesa", new Despesa());
+		
+		return mv;
 	}
 	
 	@RequestMapping("/salvar")
-	public String form(@ModelAttribute Despesa despesa) {
-		System.out.println(despesa);
+	public ModelAndView salvar(@ModelAttribute Despesa despesa) {
 		
-		return "cadastro-despesa";
+		ModelAndView mv = new ModelAndView("cadastro-despesa");
+		
+		despesaRepository.save(despesa);
+		mv.addObject("mensagem", "Despesa registrada com sucesso!");
+		mv.addObject("despesa", new Despesa());
+		
+		return mv;
 	}
 	
 
