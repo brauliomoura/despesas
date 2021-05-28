@@ -10,6 +10,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
@@ -21,6 +24,7 @@ public class Despesa {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
+	@NotEmpty(message = "Descrição deve ser preenchida com algum texto!")
 	private String descricao;
 
 	@Enumerated(EnumType.STRING)
@@ -28,9 +32,12 @@ public class Despesa {
 
 	@Column(columnDefinition = "DATE")
 	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@NotNull(message="Data deve ser informada!")
 	private LocalDate data;
 
 	@NumberFormat(pattern="#,##0.00")
+	@NotNull(message= "Algum valor deve ser informado!")
+	@DecimalMin(value="1.00", message="Valor mínimo deve ser maior ou igual a 1,00")
 	private BigDecimal valor;
 
 	private String observacoes;
@@ -43,6 +50,14 @@ public class Despesa {
 	}
 
 	public Despesa() {
+	}
+	
+	public Long getCodigo() {
+		return codigo;
+	}
+	
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getDescricao() {
