@@ -8,5 +8,5 @@ import br.com.impacta.springmvc.gerenciadordespesas.model.Despesa;
 
 public interface DespesaRepository extends JpaRepository<Despesa,Long>{
 	//nada aqui...
-	public List<Despesa> findByDescricaoLike(String descricao);
+	public List<Despesa> findByDescricaoContaining(String descricao);
 }

@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <head>
 <meta charset="UTF-8" />
 <title>Listagem de Despesas</title>
@@ -15,13 +16,26 @@
 		<div class="card-header">
 			<div class="clearfix">
 				<h4 class="card-title impacta-titulo-panel">
-					Listagem de Despesas <a
-						class="btn btn-link float-right impacta-link-panel"
-						href="/despesa/form">Nova Despesa</a>
+					Listagem de Despesas 
+						<a class="btn btn-link float-right" href="/logout">Logout</a>
+						<sec:authorize access="hasRole('MASTER')">
+							<a class="btn btn-link float-right impacta-link-panel"
+								href="/despesa/form">Nova Despesa
+							</a>
+						</sec:authorize>
 				</h4>
 			</div>
 		</div>
-
+		<form method="GET" class="form-horizontal" action="/despesa">
+			<div class="form-group">
+				<div class="col-sm-4">
+					<div class="input-group">
+						<input class="form-control" placeholder="Busca por descrição..."
+							autocomplete="off" autofocus="autofocus" name="descricao" /> </span>
+					</div>
+				</div>
+			</div>
+		</form>
 		<div class="card-body">
 			<table class="table table-bordered table-striped">
 				<thead>
@@ -48,12 +62,9 @@
 								href="/despesa/form/${despesa.codigo}"
 								class="btn btn-link btn-xs"> <span>E</span>
 							</a></td>
-							<td class="text-center">
-							<a class="btn btn-link btn-xs"
-									data-toggle="modal"
-									data-target="#confirmaRemocaoModal"
-									data-whatever="${despesa.codigo}">
-									<span>X</span>
+							<td class="text-center"><a class="btn btn-link btn-xs"
+								data-toggle="modal" data-target="#confirmaRemocaoModal"
+								data-whatever="${despesa.codigo}"> <span>X</span>
 							</a></td>
 						</tr>
 					</c:forEach>

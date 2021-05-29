@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.impacta.springmvc.gerenciadordespesas.model.Despesa;
@@ -57,10 +58,10 @@ public class DespesaController {
 
 	
 	@GetMapping
-	public ModelAndView despesas() {
+	public ModelAndView despesas(@RequestParam(defaultValue="") String descricao) {
 		ModelAndView mv = new ModelAndView("listagem-despesas");
 		
-		List<Despesa> despesas = despesaRepository.findAll();
+		List<Despesa> despesas = despesaRepository.findByDescricaoContaining(descricao);
 						
 		mv.addObject("despesas",despesas);
 		

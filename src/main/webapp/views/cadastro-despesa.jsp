@@ -29,8 +29,11 @@ span.error {
 		<div class="card">
 			<div class="card-header">
 				<div class="clearfix">
+					
 					<h4 class="card-title impacta-titulo-panel">
-						Nova Despesa <a
+						Nova Despesa 
+							<a class="btn btn-link float-right" href="/logout">Logout</a>
+							<a
 							class="btn btn-link float-right impacta-link-panel"
 							href="/despesa">Listagem de Despesas</a>
 					</h4>
@@ -71,7 +74,7 @@ span.error {
 					<label for="valor" class="col-sm-2 control-label">Valor</label>
 					<div class="col-sm-2">
 						<form:input class="form-control javascript-moeda" path="valor" />
-						<form:errors path="valor" cssClass="error" />
+						<form:errors path="valor" cssClass="error" />						
 					</div>
 				</div>
 
