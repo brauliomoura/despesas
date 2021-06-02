@@ -44,7 +44,7 @@ public class Despesa {
 
 	public Despesa(String descricao, Categoria categoria, LocalDate data, double valor) {
 		this.setDescricao(descricao);
-		this.setCategoria(categoria);
+		//this.setCategoria(categoria);
 		this.setData(data);
 		this.setValor(new BigDecimal(valor));
 	}

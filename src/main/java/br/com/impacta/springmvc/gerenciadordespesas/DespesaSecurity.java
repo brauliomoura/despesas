@@ -17,8 +17,12 @@ public class DespesaSecurity extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
+		
+		http.csrf().disable();
+		
 		http.authorizeRequests()
 			.antMatchers("/login").permitAll()
+			.antMatchers("/api/despesa/**").permitAll()
 			.antMatchers("/despesa/form").hasRole("MASTER")
 			.antMatchers("/despesa/**").hasAnyRole("MASTER", "CONVIDADO")
 			.and()
