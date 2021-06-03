@@ -1,6 +1,7 @@
 package br.com.impacta.springmvc.gerenciadordespesas.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,9 +36,9 @@ public class APIDespesasController {
 	@GetMapping("/{codigo}")
 	public @ResponseBody Despesa getDespesaById(@PathVariable Long codigo) {
 		
-		Despesa despesa = repo.getById(codigo);
+		Optional<Despesa> despesa = repo.findById(codigo);
 		
-		return despesa;
+		return despesa.get();
 	}
 	
 	@PostMapping()
