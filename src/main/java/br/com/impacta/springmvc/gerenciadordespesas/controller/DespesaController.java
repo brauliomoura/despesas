@@ -43,17 +43,17 @@ public class DespesaController {
 	@RequestMapping("/salvar")
 	public ModelAndView salvar(@Valid @ModelAttribute Despesa despesa, Errors erros) {
 		
-		ModelAndView mv = new ModelAndView("cadastro-despesa");
+		ModelAndView mdv = new ModelAndView("cadastro-despesa");
 		
 		if(erros.hasErrors()) {
-			return mv;			
+			return mdv;			
 		}
 		
 		despesaRepository.save(despesa);
-		mv.addObject("mensagem", "Despesa registrada com sucesso!");
-		mv.addObject("despesa", new Despesa());
+		mdv.addObject("mensagem", "Despesa registrada com sucesso!");
+		mdv.addObject("despesa", new Despesa());
 		
-		return mv;
+		return mdv;
 	}
 
 	

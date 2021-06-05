@@ -2,6 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+<c:set var="context" value="${pageContext.request.contextPath }"/>
 <head>
 <style>
 span.error {
@@ -10,15 +11,15 @@ span.error {
 </style>
 <meta charset="UTF-8" />
 <title>Cadastro de Despesa</title>
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="/css/bootstrap-datepicker.standalone.min.css" />
+<link rel="stylesheet" type="text/css" href="${context}/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="${context}/css/bootstrap-datepicker.standalone.min.css" />
 </head>
 <body>
 
 	<nav class="navbar bg-light navbar-light"></nav>
 
 	<form:form class="form-horizontal" method="post"
-		action="/despesa/salvar" modelAttribute="despesa">
+		action="${context}/despesa/salvar" modelAttribute="despesa">
 
 		<c:if test="${!empty mensagem}">
 			<div class="alert alert-success">
@@ -31,11 +32,11 @@ span.error {
 				<div class="clearfix">
 					
 					<h4 class="card-title impacta-titulo-panel">
-						Nova Despesa 
-							<a class="btn btn-link float-right" href="/logout">Logout</a>
+						Nova Despesa  
+							<a class="btn btn-link float-right" href="${context}/logout">Logout</a>
 							<a
 							class="btn btn-link float-right impacta-link-panel"
-							href="/despesa">Listagem de Despesas</a>
+							href="${context}/despesa">Listagem de Despesas</a>
 					</h4>
 				</div>
 			</div>
@@ -94,12 +95,12 @@ span.error {
 		</div>
 	</form:form>
 
-	<script src="/js/jquery-3.1.1.min.js"></script>
-	<script src="/js/bootstrap-min.js"></script>
-	<script src="/js/bootstrap-datepicker.min.js"></script>
-	<script src="/js/bootstrap-datepicker.pt-BR.min.js"></script>
-	<script src="/js/jquery.maskMoney.min.js"></script>
-	<script src="/js/despesas.js"></script>
+	<script src="${context}/js/jquery-3.1.1.min.js"></script>
+	<script src="${context}/js/bootstrap-min.js"></script>
+	<script src="${context}/js/bootstrap-datepicker.min.js"></script>
+	<script src="${context}/js/bootstrap-datepicker.pt-BR.min.js"></script>
+	<script src="${context}/js/jquery.maskMoney.min.js"></script>
+	<script src="${context}/js/despesas.js"></script>
 	
 </body>
 </html>

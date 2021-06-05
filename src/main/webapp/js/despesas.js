@@ -12,7 +12,7 @@ $('#confirmaRemocaoModal').on('show.bs.modal', function(event) {
 	var action = form.attr('action');
 
 	action = '/despesa/';
-	form.attr('action', action + codigo);
+	form.attr('action', getContextPath() + action + codigo);
 	
 	modal.find('.modal-body span').html('Tem certeza que deseja excluir a despesa <strong>' + codigo + '</strong>?');
 });
@@ -20,3 +20,7 @@ $('#confirmaRemocaoModal').on('show.bs.modal', function(event) {
 $(function() {
 	$('.javascript-moeda').maskMoney({decimal: ',', thousands: '.', allowZero: true})
 });
+
+function getContextPath() {
+	return window.location.pathname.substring(0, windows.location.pathname.indexOf("/",2));
+}

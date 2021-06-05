@@ -3,11 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<c:set var="context" value="${pageContext.request.contextPath }"/>
 <head>
 <meta charset="UTF-8" />
 <title>Listagem de Despesas</title>
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="stylesheet" type="text/css" href="${context}/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="${context}/css/style.css" />
 </head>
 <body>
 	<nav class="navbar bg-light navbar-light"></nav>
@@ -17,16 +18,16 @@
 			<div class="clearfix">
 				<h4 class="card-title impacta-titulo-panel">
 					Listagem de Despesas 
-						<a class="btn btn-link float-right" href="/logout">Logout</a>
+						<a class="btn btn-link float-right" href="${context}/logout">Logout</a>
 						<sec:authorize access="hasRole('MASTER')">
 							<a class="btn btn-link float-right impacta-link-panel"
-								href="/despesa/form">Nova Despesa
+								href="${context}/despesa/form">Nova Despesa
 							</a>
 						</sec:authorize>
 				</h4>
 			</div>
 		</div>
-		<form method="GET" class="form-horizontal" action="/despesa">
+		<form method="GET" class="form-horizontal" action="${context}/despesa">
 			<div class="form-group">
 				<div class="col-sm-4">
 					<div class="input-group">
@@ -59,7 +60,7 @@
 									value="${despesa.valor}" type="currency" /></td>
 							<td class="text-left">${despesa.observacoes}</td>
 							<td class="text-center"><a
-								href="/despesa/form/${despesa.codigo}"
+								href="${context}/despesa/form/${despesa.codigo}"
 								class="btn btn-link btn-xs"> <span>E</span>
 							</a></td>
 							<td class="text-center"><a class="btn btn-link btn-xs"
@@ -100,8 +101,8 @@
 				</form>
 			</div>
 		</div>
-		<script src="/js/jquery-3.1.1.min.js"></script>
-		<script src="/js/bootstrap.min.js"></script>
-		<script src="/js/despesas.js"></script>
+		<script src="${context}/js/jquery-3.1.1.min.js"></script>
+		<script src="${context}/js/bootstrap.min.js"></script>
+		<script src="${context}/js/despesas.js"></script>
 </body>
 </html>
